@@ -15,4 +15,9 @@ footer {
   text-align: center;
   border-top: solid 1px #000; }
 
+section {
+  border-style: solid;
+  margin-top: 1%;
+  margin-bottom: 1%; }
+
 /*# sourceMappingURL=main.css.map */
