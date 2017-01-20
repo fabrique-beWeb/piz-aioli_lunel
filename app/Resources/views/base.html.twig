@@ -5,14 +5,17 @@
         <title>{% block title %}PizAioli{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="stylesheet" type="text/css" href="{{ asset('../vendor/twbs/bootstrap/dist/css/bootstrap.css') }}"/>
-        <link rel="stylesheet" type="text/css" href="{{ asset('./css/main.css')}}"
+        <link rel="stylesheet" type="text/css" href="{{ asset('./css/main.css')}}"/>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
         <header>
-            <h1>PIZ'AIOLI</h1>
+            <div class="text-center">
+                <h1>PIZ'AIOLI</h1>
+            </div>
         </header>
+        {% block nav %}{% endblock %}
         {% block contenu %}{% endblock %}
         <footer class="footer">
             <div class="container">
