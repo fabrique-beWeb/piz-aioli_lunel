@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block nav %}
-    <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li><a href="{{ path('home')}}">Accueil</a></li>
-            <li><a href="{#{{ path('pizza')}}#}">Nos pizzas</a></li>
-            <li><a href="{{ path('location')}}">Venir nous voir</a></li>
-            <li><a href="#">Se connecter</a></li>
-        </ul>
+        <div class="row">
+            <nav class="navbar navbar-default">
+                <ul class="nav text-center">
+                    <li class="col-lg-3"><a href="{{ path('home')}}">Accueil</a></li>
+                    <li class="col-lg-3"><a href="{#{{ path('pizza')}}#}">Nos pizzas</a></li>
+                    <li class="col-lg-3"><a href="{{ path('location')}}">Venir nous voir</a></li>
+                    <li class="col-lg-3"><a href="#">Se connecter</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
-    </nav>
 {% endblock %}
 {% block contenu %}
     <section class="container">
