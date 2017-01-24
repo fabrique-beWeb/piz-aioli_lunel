@@ -14,39 +14,39 @@ class ViewController extends Controller
     {
         return $this->render('default/home.html.twig');
     }
-       /**
+    /**
      * @Route("/pizza", name="pizza")
      */
     public function pizzaAction()
     {
         return $this->render('default/pizza.html.twig');
     }
-       /**
+    /**
      * @Route("/location", name="location")
      */
     public function locationAction()
     {
         return $this->render('default/location.html.twig');
     }
-       /**
+    /**
      * @Route("/login", name="login")
      */
     public function loginAction()
     {
         return $this->render('default/login.html.twig');
     }
-       /**
+    /**
      * @Route("/signUp", name="signUp")
      */
     public function signUpAction()
     {
         return $this->render('default/signUp.html.twig');
     }
-       /**
+    /**
      * @Route("/commande", name="commande")
      */
-    public function commandeAction()
+    public function commandAction()
     {
-        return $this->render('default/commande.html.twig');
+        return $this->render('default/command.html.twig');
     }
 }
