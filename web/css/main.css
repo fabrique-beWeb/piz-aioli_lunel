@@ -20,4 +20,12 @@ section {
   margin-top: 1%;
   margin-bottom: 1%; }
 
+.border {
+  border: 2px solid black; }
+
+.border2 {
+  border: 1px solid black;
+  margin-left: 40px;
+  margin-right: 40px; }
+
 /*# sourceMappingURL=main.css.map */
