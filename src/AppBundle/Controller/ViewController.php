@@ -43,7 +43,7 @@ class ViewController extends Controller
         return $this->render('default/signUp.html.twig');
     }
     /**
-     * @Route("/commande", name="commande")
+     * @Route("/command", name="command")
      */
     public function commandAction()
     {
