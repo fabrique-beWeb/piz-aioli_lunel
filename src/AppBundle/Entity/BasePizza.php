@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * BasePizza
+ * Base
  *
- * @ORM\Table(name="base_pizza")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\BasePizzaRepository")
+ * @ORM\Table(name="base")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BaseRepository")
  */
-class BasePizza
+class Base
 {
     /**
      * @var int
@@ -44,7 +44,7 @@ class BasePizza
      *
      * @param string $nom
      *
-     * @return BasePizza
+     * @return Base
      */
     public function setNom($nom)
     {
