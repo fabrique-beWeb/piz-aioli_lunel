@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+    <h1>Pizza</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pizza.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ pizza.nomPizza }}</td>
+            </tr>
+            <tr>
+                <th>Taille</th>
+                <td>{{ pizza.taille }}</td>
+            </tr>
+            <tr>
+                <th>Base</th>
+                <td>{{ pizza.base }}</td>
+            </tr>
+            <tr>
+                <th>Ingredients</th>
+                <td>{{ pizza.ingredients }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ pizza.prix }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img width="100" height="100" src="{{asset('images/')~pizza.image }}"></td>
+            </tr>
+            <tr>
+                <th>Supplements</th>
+                <td>{{ pizza.supplements }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pizza_index') }}">Revenir à l'accueil</a>
+        </li>
+        <li>
+            <a href="{{ path('pizza_edit', { 'id': pizza.id }) }}">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
