@@ -28,4 +28,39 @@ section {
   margin-left: 40px;
   margin-right: 40px; }
 
+.Degrade {
+  background: linear-gradient(to right, green, white); }
+
+.Degrade1 {
+  background: linear-gradient(to right, white, red); }
+
+.Degrade2 {
+  background: linear-gradient(to right, red, green); }
+
+.Degrade3 {
+  background: linear-gradient(to right, green, white, red); }
+
+.red {
+  background-color: red; }
+
+.white {
+  background-color: white; }
+
+.green {
+  background-color: green; }
+
+.container {
+  margin: 0;
+  border: 0;
+  padding: 0; }
+
+.row {
+  margin: 0;
+  border: 0;
+  padding: 0; }
+
+/*section{
+    background-color: lime!important;
+}*/
+
 /*# sourceMappingURL=main.css.map */
