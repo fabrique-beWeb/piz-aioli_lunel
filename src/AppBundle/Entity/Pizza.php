@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * Pizza
@@ -57,9 +59,9 @@ class Pizza
     private $prix;
 
     /**
-     * @var string
-     *
+     * @var UploadedFile
      * @ORM\Column(name="image", type="string", length=255)
+     * @File(mimeTypes={"image/jpg","image/jpeg","image/png"})
      */
     private $image;
 

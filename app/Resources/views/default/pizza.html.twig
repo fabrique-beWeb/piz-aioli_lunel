@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-default">
+                <ul class="nav text-center">
+                    <li class="col-lg-3"><a href="{{ path('home')}}">Accueil</a></li>
+                    <li class="col-lg-3"><a href="{{ path('pizza')}}">Nos pizzas</a></li>
+                    <li class="col-lg-3"><a href="{{ path('location')}}">Venir nous voir</a></li>
+                    <li class="col-lg-3"><a href="{{ path('login')}}">Se connecter</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+{% block contenu %}
+    <div class="container">
+        {%  for  pizza in varPizza %}
+        <div class="row thumbnail">
+            <img class="col-md-2" src="{{asset('images/')~pizza.image }}">
+            <div class="col-md-8">
+                <h3 class="text-center">{{pizza.nomPizza}}</h3>
+            <p>{{pizza.ingredients}}</p>
+            </div>
+            <h3 class="col-md-2 pprix">Prix: {{pizza.prix}} €</h3>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

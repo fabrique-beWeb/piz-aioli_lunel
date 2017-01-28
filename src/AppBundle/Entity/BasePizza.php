@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Admin
+ * BasePizza
  *
- * @ORM\Table(name="admin")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AdminRepository")
+ * @ORM\Table(name="base_pizza")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BasePizzaRepository")
  */
-class Admin
+class BasePizza
 {
     /**
      * @var int
@@ -28,13 +28,6 @@ class Admin
      */
     private $nom;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="pizzasListPizza", type="string", length=255)
-     */
-    private $pizzasListPizza;
-
 
     /**
      * Get id
@@ -51,7 +44,7 @@ class Admin
      *
      * @param string $nom
      *
-     * @return Admin
+     * @return BasePizza
      */
     public function setNom($nom)
     {
@@ -68,30 +61,6 @@ class Admin
     public function getNom()
     {
         return $this->nom;
-    }
-
-    /**
-     * Set pizzasListPizza
-     *
-     * @param string $pizzasListPizza
-     *
-     * @return Admin
-     */
-    public function setPizzasListPizza($pizzasListPizza)
-    {
-        $this->pizzasListPizza = $pizzasListPizza;
-
-        return $this;
-    }
-
-    /**
-     * Get pizzasListPizza
-     *
-     * @return string
-     */
-    public function getPizzasListPizza()
-    {
-        return $this->pizzasListPizza;
     }
 }
 
