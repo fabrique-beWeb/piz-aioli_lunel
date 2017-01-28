@@ -12,16 +12,18 @@ and open the template in the editor.
 header{
     text-align: center;
     border-bottom: solid 1px #000;
+    background-color: #19c519;
+}
+h1{
+    margin-top: 0px;
 }
 footer{
+    background-color: #bd0e0e;
     text-align: center;
     border-top: solid 1px #000;
+    color: white;
 }
-section{
-    border-style: solid;
-    margin-top : 1%;
-    margin-bottom : 1%;
-}
+
 .border{
     border: 2px solid black;
 }
