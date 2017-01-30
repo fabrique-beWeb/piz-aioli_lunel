@@ -62,5 +62,8 @@ class Taille
     {
         return $this->nom;
     }
+    public function __toString() {
+        return $this->getNom();
+    }
 }
 

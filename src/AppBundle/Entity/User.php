@@ -3,15 +3,17 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="UserRepository")
  */
-class User
-{
+class User Implements UserInterface, \Serializable {
+
     /**
      * @var int
      *
@@ -24,64 +26,86 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=255, unique=true)
+     * @ORM\Column(name="username", type="string", length=25, unique=true)
      */
-    private $pseudo;
+    private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=64)
      */
     private $password;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="commande", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
      */
-    private $commande;
+    private $plainPassword;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pizzas", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=60, unique=true)
      */
-    private $pizzas;
+    private $email;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isActive", type="boolean")
+     */
+    private $isActive;
+
+    public function __construct() {
+        $this->isActive = true;
+        //may not be needed, see section on salt below
+//        $this->salt= md5(uniqid(null,true));
+    }
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
     /**
-     * Set pseudo
+     * Set username
      *
-     * @param string $pseudo
+     * @param string $username
      *
      * @return User
      */
-    public function setPseudo($pseudo)
-    {
-        $this->pseudo = $pseudo;
+    public function setUsername($username) {
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get pseudo
+     * Get username
      *
      * @return string
      */
-    public function getPseudo()
-    {
-        return $this->pseudo;
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function getSalt() {
+        //you *may* need a real salt depending on your encoder
+        //see section on salt below
+        return null;
+    }
+
+    public function getPlainPassword() {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password) {
+        $this->plainPassword = $password;
     }
 
     /**
@@ -91,8 +115,7 @@ class User
      *
      * @return User
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
 
         return $this;
@@ -103,57 +126,78 @@ class User
      *
      * @return string
      */
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
+    public function getRoles() {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials() {
+        
+    }
+
     /**
-     * Set commande
+     * Set email
      *
-     * @param string $commande
+     * @param string $email
      *
      * @return User
      */
-    public function setCommande($commande)
-    {
-        $this->commande = $commande;
+    public function setEmail($email) {
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * Get commande
+     * Get email
      *
      * @return string
      */
-    public function getCommande()
-    {
-        return $this->commande;
+    public function getEmail() {
+        return $this->email;
     }
 
     /**
-     * Set pizzas
+     * Set isActive
      *
-     * @param string $pizzas
+     * @param boolean $isActive
      *
      * @return User
      */
-    public function setPizzas($pizzas)
-    {
-        $this->pizzas = $pizzas;
+    public function setIsActive($isActive) {
+        $this->isActive = $isActive;
 
         return $this;
     }
 
     /**
-     * Get pizzas
+     * Get isActive
      *
-     * @return string
+     * @return bool
      */
-    public function getPizzas()
-    {
-        return $this->pizzas;
+    public function getIsActive() {
+        return $this->isActive;
     }
+
+    //@see \serializable::serialize()
+    public function serialize() {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password
+        ));
+    }
+
+    //@see \serializable::unserialize()
+    public function unserialize($serialized) {
+        list(
+                $this->id,
+                $this->username,
+                $this->password
+                ) = unserialize($serialized);
+    }
+
 }
-

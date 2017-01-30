@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Query\Expr\Base;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints\File;
 
@@ -22,7 +23,6 @@ class Pizza
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
@@ -33,14 +33,16 @@ class Pizza
     /**
      * @var string
      *
-     * @ORM\Column(name="taille", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity = "Taille")
+     * @ORM\JoinColumn(name = "fk_taille", referencedColumnName = "id")
      */
     private $taille;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="base", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity = "Base")
+     * @ORM\JoinColumn(name = "fk_base", referencedColumnName = "id")
      */
     private $base;
 
@@ -67,8 +69,9 @@ class Pizza
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="supplements", type="string", length=255)
+     * 
+     * @ORM\ManyToOne(targetEntity = "Ingredients")
+     * @ORM\JoinColumn(name = "fk_supp", referencedColumnName = "id")
      */
     private $supplements;
 
@@ -250,5 +253,8 @@ class Pizza
     {
         return $this->supplements;
     }
-}
+    public function __toString() {
+        return $this->getNomPizza();
+    }
 
+}
