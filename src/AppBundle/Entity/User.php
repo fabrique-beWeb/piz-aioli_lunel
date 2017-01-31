@@ -2,8 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -12,8 +12,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="UserRepository")
  */
-class User Implements UserInterface, \Serializable {
-
+class User implements UserInterface, \serializable
+{
     /**
      * @var int
      *
@@ -26,49 +26,46 @@ class User Implements UserInterface, \Serializable {
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=25, unique=true)
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=64)
+     * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
-     */
-    private $plainPassword;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=60, unique=true)
+     * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
     /**
-     * @var bool
+     * @var array
      *
-     * @ORM\Column(name="isActive", type="boolean")
+     * @ORM\Column(name="role", type="array")
      */
-    private $isActive;
+    private $role;
 
-    public function __construct() {
-        $this->isActive = true;
-        //may not be needed, see section on salt below
-//        $this->salt= md5(uniqid(null,true));
-    }
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="avatar", type="string", length=255)
+     */
+    private $avatar;
+
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -79,7 +76,8 @@ class User Implements UserInterface, \Serializable {
      *
      * @return User
      */
-    public function setUsername($username) {
+    public function setUsername($username)
+    {
         $this->username = $username;
 
         return $this;
@@ -90,22 +88,9 @@ class User Implements UserInterface, \Serializable {
      *
      * @return string
      */
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
-    }
-
-    public function getSalt() {
-        //you *may* need a real salt depending on your encoder
-        //see section on salt below
-        return null;
-    }
-
-    public function getPlainPassword() {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($password) {
-        $this->plainPassword = $password;
     }
 
     /**
@@ -115,7 +100,8 @@ class User Implements UserInterface, \Serializable {
      *
      * @return User
      */
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $password;
 
         return $this;
@@ -126,16 +112,9 @@ class User Implements UserInterface, \Serializable {
      *
      * @return string
      */
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
-    }
-
-    public function getRoles() {
-        return array('ROLE_USER');
-    }
-
-    public function eraseCredentials() {
-        
     }
 
     /**
@@ -145,7 +124,8 @@ class User Implements UserInterface, \Serializable {
      *
      * @return User
      */
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
 
         return $this;
@@ -156,48 +136,87 @@ class User Implements UserInterface, \Serializable {
      *
      * @return string
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
     /**
-     * Set isActive
+     * Set role
      *
-     * @param boolean $isActive
+     * @param array $role
      *
      * @return User
      */
-    public function setIsActive($isActive) {
-        $this->isActive = $isActive;
+    public function setRole($role)
+    {
+        $this->role = $role;
 
         return $this;
     }
 
     /**
-     * Get isActive
+     * Get role
      *
-     * @return bool
+     * @return array
      */
-    public function getIsActive() {
-        return $this->isActive;
+    public function getRole()
+    {
+        return $this->role;
     }
 
-    //@see \serializable::serialize()
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     *
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+    
+    public function eraseCredentials() {
+        
+    }
+
+
+    public function getRoles() {
+        return $this->role;
+    }
+
+    public function getSalt() {
+        
+    }
+
+
     public function serialize() {
         return serialize(array(
             $this->id,
-            $this->username,
+            $this->email,
             $this->password
         ));
     }
 
-    //@see \serializable::unserialize()
     public function unserialize($serialized) {
         list(
                 $this->id,
-                $this->username,
+                $this->email,
                 $this->password
                 ) = unserialize($serialized);
     }
-
 }
+
