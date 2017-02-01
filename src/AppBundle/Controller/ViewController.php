@@ -37,13 +37,14 @@ class ViewController extends Controller
     {
         return $this->render('default/location.html.twig');
     }
-    /**
-     * @Route("/login", name="login")
-     */
-    public function loginAction()
-    {
-        return $this->render('default/login.html.twig');
-    }
+//    /**
+//     * @Route("/login", name="login")
+//     */
+//    public function loginAction()
+//    {
+//        return $this->render('default/login.html.twig');
+//    }
+    
     /**
      * @Route("/signUp", name="signUp")
      */
