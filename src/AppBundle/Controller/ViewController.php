@@ -20,6 +20,7 @@ class ViewController extends Controller
         $enseigne = $emp->getRepository("AppBundle:Enseigne")->findAll();
         return array("varPizza" => $pizza,"varEnseigne" => $enseigne);
     }
+    
     /**
      * @Route("/pizza", name="pizza")
      * @Template(":default:pizza.html.twig")
@@ -30,6 +31,7 @@ class ViewController extends Controller
         $pizza = $em->getRepository("AppBundle:Pizza")->findAll();
         return array("varPizza" => $pizza);
     }
+    
     /**
      * @Route("/location", name="location")
      */
@@ -37,21 +39,7 @@ class ViewController extends Controller
     {
         return $this->render('default/location.html.twig');
     }
-//    /**
-//     * @Route("/login", name="login")
-//     */
-//    public function loginAction()
-//    {
-//        return $this->render('default/login.html.twig');
-//    }
     
-//    /**
-//     * @Route("/signUp", name="signUp")
-//     */
-//    public function signUpAction()
-//    {
-//        return $this->render('default/signUp.html.twig');
-//    }
     /**
      * @Route("/command", name="command")
      */
