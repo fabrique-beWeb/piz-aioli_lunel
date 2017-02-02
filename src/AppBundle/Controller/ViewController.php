@@ -45,13 +45,13 @@ class ViewController extends Controller
 //        return $this->render('default/login.html.twig');
 //    }
     
-    /**
-     * @Route("/signUp", name="signUp")
-     */
-    public function signUpAction()
-    {
-        return $this->render('default/signUp.html.twig');
-    }
+//    /**
+//     * @Route("/signUp", name="signUp")
+//     */
+//    public function signUpAction()
+//    {
+//        return $this->render('default/signUp.html.twig');
+//    }
     /**
      * @Route("/command", name="command")
      */
