@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -7,19 +8,71 @@ and open the template in the editor.
     Created on : 17 janv. 2017, 15:51:58
     Author     : hicham
 */
-header {
-  text-align: center;
-  border-bottom: solid 1px #000;
-  background-color: #19c519; }
-
-h1 {
-  margin-top: 0px; }
-
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 févr. 2017, 14:48:13
+    Author     : alexandre-brunet
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 févr. 2017, 14:47:15
+    Author     : alexandre-brunet
+*/
 footer {
   background-color: #bd0e0e;
   text-align: center;
   border-top: solid 1px #000;
   color: white; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 févr. 2017, 14:47:56
+    Author     : alexandre-brunet
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 févr. 2017, 14:47:15
+    Author     : alexandre-brunet
+*/
+header {
+  text-align: center;
+  border-bottom: solid 1px #000;
+  background-color: #19c519;
+  font-family: 'Kaushan Script', cursive; }
+
+.color-text {
+  color: black; }
+
+a:hover {
+  color: red; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 févr. 2017, 14:47:15
+    Author     : alexandre-brunet
+*/
+h1 {
+  margin-top: 0px; }
 
 .border {
   border: 2px solid black; }

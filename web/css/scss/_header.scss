@@ -1,0 +1,23 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 févr. 2017, 14:47:56
+    Author     : alexandre-brunet
+*/
+@import "color";
+
+header{
+    text-align: center;
+    border-bottom: solid 1px $borderColor;
+    background-color: $headerColor;
+    font-family: 'Kaushan Script', cursive;
+    }
+.color-text{
+    color: $textColor;
+}
+a:hover{
+    color: $hoverText;
+}
