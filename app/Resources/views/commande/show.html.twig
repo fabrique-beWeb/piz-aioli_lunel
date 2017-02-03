@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+    <h1>Commande</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id : </th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>Numero du client : </th>
+                <td>{{ commande.idClient }}</td>
+            </tr>
+            <tr>
+                <th>Date : </th>
+                <td>{{ commande.date|date('d/m/y')}}</td>
+            </tr>
+            <tr>
+                <th>Heure : </th>
+                <td>{{ commande.heure }}</td>
+            </tr>
+            <tr>
+                <th>Mode paiement : </th>
+                <td>{{ commande.modePaiement }}</td>
+            </tr>
+            <tr>
+                <th>Nomlivreur : </th>
+                <td>{{ commande.nomLivreur }}</td>
+            </tr>
+            <tr>
+                <th>Idpizza : </th>
+                <td>{{ commande.idPizza }}</td>
+            </tr>
+            <tr>
+                <th>Message : </th>
+                <td>{{ commande.message }}</td>
+            </tr>
+            <tr>
+                <th>Statut : </th>
+                <td>{{ commande.statut }}</td>
+            </tr>
+            <tr>
+                <th>Adresse de livraison : </th>
+                <td>{{ commande.adressesLivraison }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commande_index') }}">Retour du ma liste de Commande</a>
+        </li>
+        <li>
+            <a href="{{ path('commande_edit', { 'id': commande.id }) }}">Validez</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

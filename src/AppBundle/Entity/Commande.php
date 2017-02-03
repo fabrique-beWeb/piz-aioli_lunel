@@ -3,11 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Commande
  *
- * @ORM\Table(name="commande")
+ * @ORM\Table(name="pizAioli_commande")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommandeRepository")
  */
 class Commande
@@ -23,15 +24,15 @@ class Commande
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="id_client", type="string", length=255)
+     * 
+     * @ORM\Column(name="client", type="string", length=255)
      */
     private $idClient;
 
     /**
-     * @var string
+     * @var DateTime
      *
-     * @ORM\Column(name="date", type="string", length=255)
+     * @ORM\Column(name="date", type="datetime", length=255)
      */
     private $date;
 
@@ -57,9 +58,9 @@ class Commande
     private $nomLivreur;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="id_pizza", type="string", length=255)
+     *@var string
+     * @ORM\ManyToOne(targetEntity = "Pizza")
+     * @ORM\JoinColumn(name = "fk_pizza", referencedColumnName = "id")
      */
     private $idPizza;
 

@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints\File;
 /**
  * Pizza
  *
- * @ORM\Table(name="pizza")
+ * @ORM\Table(name="pizAioli_pizza")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PizzaRepository")
  */
 class Pizza
