@@ -24,8 +24,9 @@ class Commande
 
     /**
      * @var string
-     * 
-     * @ORM\Column(name="client", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity = "Client")
+     * @ORM\JoinColumn(name = "fk_client", referencedColumnName = "id")
+     *
      */
     private $idClient;
 

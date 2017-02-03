@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Commande;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class ViewController extends Controller
 {
@@ -28,7 +30,7 @@ class ViewController extends Controller
     public function pizzaAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $pizza = $em->getRepository("AppBundle:Pizza")->findAll();
+        $pizza = $em->getRepository("AppBundle:Pizza")->findBy(array(),array('base'=>'ASC'));
         return array("varPizza" => $pizza);
     }
     
@@ -43,8 +45,23 @@ class ViewController extends Controller
     /**
      * @Route("/command", name="command")
      */
-    public function commandAction()
+    public function commandAction(Request $request)
     {
-        return $this->render('default/command.html.twig');
+        $commande = new Commande();
+        $form = $this->createForm('AppBundle\Form\CommandeType', $commande);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($commande);
+            $em->flush($commande);
+
+            return $this->redirectToRoute('commande_show', array('id' => $commande->getId()));
+        }
+
+        return $this->render('commande/new.html.twig', array(
+            'commande' => $commande,
+            'form' => $form->createView(),
+        ));
     }
 }
