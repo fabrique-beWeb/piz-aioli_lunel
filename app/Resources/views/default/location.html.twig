@@ -7,7 +7,13 @@
                     <li class="col-lg-3"><a href="{{ path('home')}}">Accueil</a></li>
                     <li class="col-lg-3"><a href="{{ path('pizza')}}">Nos pizzas</a></li>
                     <li class="col-lg-3"><a href="{{ path('location')}}">Venir nous voir</a></li>
-                    <li class="col-lg-3"><a href="{{ path('fos_user_security_login')}}">Se connecter</a></li>
+                    {% if is_granted("ROLE_ADMIN")%}
+                        <li class="col-lg-3"><a href="{{ path('fos_user_security_logout')}}">Se deconnecter</a></li>
+                    {% elseif is_granted("ROLE_USER") %}
+                        <li class="col-lg-3"><a href="{{ path('fos_user_security_logout')}}">Se deconnecter</a></li>
+                    {% else %}
+                         <li class="col-lg-3"><a href="{{ path('fos_user_security_login')}}">Se connecter</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
