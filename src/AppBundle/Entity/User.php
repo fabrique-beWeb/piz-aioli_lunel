@@ -63,13 +63,6 @@ class User extends BaseUser
      * @ORM\Column(name="avatar", type="string", length=255)
      */
     private $avatar;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="pizzasFavoritesListePizza", type="string", length=255)
-     */
-    private $pizzasFavoritesListePizza;
     
     function getId() {
         return $this->id;
