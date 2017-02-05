@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-md-4">   
             <p>Date: {{commande.date|date('d/m/y')}}</p>
-            <p>Heure: {{commande.heure}}</p>
+            <p>Heure: {{commande.heure|date('h:i:s')}}</p>
                 </div>
                 <div class="col-md-4">
             <p>Moyen du Paiement: {{commande.modePaiement}}</p>

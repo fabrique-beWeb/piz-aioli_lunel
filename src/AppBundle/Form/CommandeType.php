@@ -15,7 +15,7 @@ class CommandeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {   
         
-        $builder->add('idClient')
+        $builder//->add('idClient')
                 ->add('date',DateType::class, array(
                    'widget' => 'single_text',
                     'input' => 'datetime',

@@ -48,6 +48,9 @@ class CommandeController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if ($this->getUser()!= NULL){
+                $commande ->setIdClient($this->getUser());
+            }
             $em->persist($commande);
             $em->flush($commande);
 

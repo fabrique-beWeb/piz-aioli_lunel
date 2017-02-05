@@ -248,5 +248,10 @@ class Client
     {
         return $this->pizzasFavoritesListePizza;
     }
+    public function __toString() {
+        
+        return $this->getNom();
+    }
+
 }
 

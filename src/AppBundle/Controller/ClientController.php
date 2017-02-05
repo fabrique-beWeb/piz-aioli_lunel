@@ -28,10 +28,13 @@ class ClientController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            if ($this->getUser()!= NULL){
+                $commande ->setIdClient($this->getUser());
+            }
             $em->persist($commande);
             $em->flush($commande);
 
-            return $this->redirectToRoute('commande_show', array('id' => $commande->getId()));
+            return $this->redirectToRoute('home', array('id' => $commande->getId()));
         }
 
         return $this->render('commande/new.html.twig', array(

@@ -2,8 +2,15 @@
 
 {% block contenu %}
     <h1>Commande creation</h1>
-
+    {% if is_granted("ROLE_USER")%}
+    {{ form_start(form,{'attr':{'action':path('vaildUser')}}) }}
+    {% elseif is_granted("ROLE_ADMIN")%}
     {{ form_start(form) }}
+    {% else %}
+    {{ form_start(form,{'attr':{'action':path('command')}})}}
+    <input type="text" value="nom">
+    {% endif %}
+    
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}

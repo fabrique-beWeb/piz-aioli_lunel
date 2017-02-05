@@ -24,8 +24,8 @@ class Commande
 
     /**
      * @var string
-     * @ORM\ManyToOne(targetEntity = "Client")
-     * @ORM\JoinColumn(name = "fk_client", referencedColumnName = "id")
+     * @ORM\ManyToOne(targetEntity = "User")
+     * @ORM\JoinColumn(name = "fk_user", referencedColumnName = "id")
      *
      */
     private $idClient;
@@ -46,11 +46,25 @@ class Commande
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="mode_paiement", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity = "ModePaiement")
+     * @ORM\JoinColumn(name = "fk_modepaiement", referencedColumnName = "id")
      */
     private $modePaiement;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_client", type="string", length=255)
+     */
+    private $nomClient;
+    function getNomClient() {
+        return $this->nomClient;
+    }
 
+    function setNomClient($nomClient) {
+        $this->nomClient = $nomClient;
+    }
+
+    
     /**
      * @var string
      *
@@ -75,7 +89,8 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="statut", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity = "Statut")
+     * @ORM\JoinColumn(name = "fk_statut", referencedColumnName = "id")
      */
     private $statut;
 
