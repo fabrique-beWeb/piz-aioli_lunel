@@ -1,0 +1,9 @@
+@import "color";
+
+
+footer{
+    background-color:$footerColor;
+    text-align: center;
+    border-top: solid 1px $borderColor;
+    color: white;
+}

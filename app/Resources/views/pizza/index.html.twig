@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block nav %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-default">
+                <ul class="nav text-center">
+                    <li class="col-lg-3"><a href="{{ path('home')}}">Accueil</a></li>
+                    <li class="col-lg-3"><a href="{{ path('pizza')}}">Nos pizzas</a></li>
+                    <li class="col-lg-3"><a href="{{ path('location')}}">Venir nous voir</a></li>
+{#                    <li class="col-lg-3"><a href="{{ path('login')}}">Se connecter</a></li>#}
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
+{% block contenu %}
+    
+    <h1>Ma Liste de Pizza</h1>
+
+    {#<table>
+        <thead>
+            <tr>
+                
+                <th>Nom</th>
+                <th>Base</th>
+                <th>Ingredients</th>
+                <th>Prix</th>
+                <th>Image</th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>#}
+    <div class="container">
+        {% for pizza in pizzas %}
+            <div class="row thumbnail">
+            <img class="col-md-2" src="{{asset('images/')~pizza.image }}">
+            <div class="col-md-8">
+                <h3 class="text-center">{{pizza.nomPizza}}</h3>
+            <p class="text-center">{{pizza.ingredients}}</p>
+            </div>
+            <div class="col-md-2">
+            <h3>Prix: {{pizza.prix}} €</h3>
+            <div class="text-center">
+                <a href="{{ path('pizza_show', { 'id': pizza.id }) }}" class="btn btn-info" role="button">Details</a>
+                <a href="{{ path('pizza_edit', { 'id': pizza.id }) }}" class="btn btn-info" role="button">Modifier</a>
+                
+            </div>
+            </div>
+        </div>
+ {#           <tr>
+                
+                <td>{{ pizza.nomPizza }}</td>
+                
+                <td>{{ pizza.base }}</td>
+                <td>{{ pizza.ingredients }}</td>
+                <td>{{ pizza.prix }}</td>
+                <td><img width="100" height="100" src="{{asset('images/')~pizza.image }}"></td>#}
+                
+                {#<td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pizza_show', { 'id': pizza.id }) }}">Details</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pizza_edit', { 'id': pizza.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>#}
+        {% endfor %}
+    </div>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pizza_new') }}">Ajouter une nouvelle Pizza</a>
+        </li>
+    </ul>
+{% endblock %}

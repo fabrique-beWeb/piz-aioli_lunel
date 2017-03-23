@@ -1,0 +1,14 @@
+@import "color";
+
+header{
+    text-align: center;
+    border-bottom: solid 1px $borderColor;
+    background-color: $headerColor;
+    font-family: 'Kaushan Script', cursive;
+    }
+.color-text{
+    color: $textColor;
+}
+a:hover{
+    color: $hoverText;
+}
