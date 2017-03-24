@@ -1,42 +1,30 @@
-/*
-Error: Invalid CSS after "@import "footer"": expected "{", was ";"
-        on line 8 of /var/www/html/piz-aioli_lunel/web/css/scss/main.scss
+footer {
+  background-color: #bd0e0e;
+  text-align: center;
+  border-top: solid 1px #000;
+  color: white; }
 
-3: @import "color";
-4: 
-5: 
-6: <<<<<<< HEAD
-7: =======
-8: @import "footer";
-9: @import "header";
-10: @import "color";
-11: 
-12: 
-13: >>>>>>> origin/master
+header {
+  text-align: center;
+  border-bottom: solid 1px #000;
+  background-color: #19c519;
+  font-family: 'Kaushan Script', cursive; }
 
-Backtrace:
-/var/www/html/piz-aioli_lunel/web/css/scss/main.scss:8
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:1207:in `expected'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:1137:in `expected'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:1132:in `tok!'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:665:in `block'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:658:in `ruleset'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:684:in `block_child'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:677:in `block_contents'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:125:in `stylesheet'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/scss/parser.rb:41:in `parse'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:406:in `_to_tree'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:381:in `_render_with_sourcemap'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/engine.rb:298:in `render_with_sourcemap'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:391:in `run'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/sass_scss.rb:63:in `process_result'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:52:in `parse'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/lib/sass/exec/base.rb:19:in `parse!'
-/var/lib/gems/2.3.0/gems/sass-3.4.23/bin/sass:13:in `<top (required)>'
-/usr/local/bin/sass:23:in `load'
-/usr/local/bin/sass:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"@import \"footer\"\": expected \"{\", was \";\"\A         on line 8 of /var/www/html/piz-aioli_lunel/web/css/scss/main.scss\A \A 3: @import \"color\";\A 4: \A 5: \A 6: <<<<<<< HEAD\A 7: =======\A 8: @import \"footer\";\A 9: @import \"header\";\A 10: @import \"color\";\A 11: \A 12: \A 13: >>>>>>> origin/master"; }
+.color-text {
+  color: black; }
+
+a:hover {
+  color: red; }
+
+h1 {
+  margin-top: 0px; }
+
+.border {
+  border: 2px solid black; }
+
+.border2 {
+  border: 1px solid black;
+  margin-left: 40px;
+  margin-right: 40px; }
+
+/*# sourceMappingURL=main.css.map */
