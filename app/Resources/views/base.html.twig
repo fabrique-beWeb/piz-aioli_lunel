@@ -3,28 +3,30 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}PizAioli{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="{{ asset('./css/main.css')}}"/>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        <header>
-            <div class="text-center">
-                <h1><link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-<a class="color-text hover" href="{{ path('home')}}">PIZ'AIOLI</a></h1>
-            </div>
-        </header>
-        {% block nav %}{% endblock %}
-        {% block contenu %}{% endblock %}
-        <footer class="footer">
-            <div class="container">
-            <p>Copyright-fondespierre/beWeb</p>
-            </div>
-        </footer>
-        {% block javascripts %}{% endblock %}
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="/ajax.js"></script>
-    </body>
+    <link rel="stylesheet" type="text/css" href="{{ asset('./css/main.css')}}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+{% block body %}{% endblock %}
+<header>
+    <div class="text-center">
+        <h1><link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+            <a class="color-text hover" href="{{ path('home')}}">PIZ'AIOLI</a></h1>
+    </div>
+</header>
+{% block nav %}{% endblock %}
+{% block contenu %}{% endblock %}
+<footer class="footer">
+    <div class="container">
+        <p>Copyright-fondespierre/beWeb</p>
+    </div>
+</footer>
+{% block javascripts %}{% endblock %}
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/script/angular.js"></script>
+<script src="/script/app.js"></script>
+<script src="/ajax.js"></script>
+</body>
 </html>

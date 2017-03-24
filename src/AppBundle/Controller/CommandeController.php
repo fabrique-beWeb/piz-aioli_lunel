@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
+use AppBundle\Entity\Statut;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,26 +25,16 @@ class CommandeController extends Controller {
      * @Method("GET")
      */
     public function indexAction() {
-        $em = $this->getDoctrine()->getManager();
-//        $commandes = $em->getRepository('AppBundle:Commande')->findby(array('statut' => 2 and 1), array('heure' => 'ASC'));
-//        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-                        'SELECT c
-                        FROM AppBundle:Commande c
-                        WHERE c.statut < :statut
-                        ORDER BY c.heure ASC'
-                )->setParameter('statut', 3);
-        return $this->render('commande/index.html.twig', array(
-                    'commandes' => $query->getResult(),
-        ));
+        return $this->render('commande/index.html.twig');
     }
+
     /**
      * Lists all commande entities.
      *
      * @Route("/notDone")
      * @Method("GET")
      */
-    public function getCommandNotDone() {
+    public function getCommand() {
         $em = $this->getDoctrine()->getManager();
 //        $commandes = $em->getRepository('AppBundle:Commande')->findby(array('statut' => 2 and 1), array('heure' => 'ASC'));
 //        $em = $this->getDoctrine()->getManager();
@@ -63,7 +54,7 @@ class CommandeController extends Controller {
      * @Method("GET")
      */
     public function getStatus() {
-        $status = $this->getDoctrine()->getRepository(\AppBundle\Entity\Statut::class)->findAll();
+        $status = $this->getDoctrine()->getRepository(Statut::class)->findAll();
         return new JsonResponse($status);
     }
 
@@ -132,6 +123,22 @@ class CommandeController extends Controller {
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
         ));
+    }
+
+    /**
+     * Displays a form to edit an existing commande entity.
+     *
+     * @Route("/{id}/update")
+     * @Method({"PUT"})
+     */
+    public function updateCommand(Request $request, $id) {
+        $command = $this->getDoctrine()->getRepository(Commande::class)->find($id);
+        $status = $this->getDoctrine()->getRepository(Statut::class)->find($request->get("id"));
+        $em = $this->getDoctrine()->getManager();
+        $command->setStatut($status);
+        $em->merge($command);
+        $em->flush();
+        return new JsonResponse($command);
     }
 
     /**

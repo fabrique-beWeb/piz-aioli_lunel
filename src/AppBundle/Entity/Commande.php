@@ -331,7 +331,8 @@ class Commande implements JsonSerializable
 
     public function jsonSerialize() {
         return array(
-            'id'=> $this->id
+            'id'=> $this->id,
+            'status'=> $this->statut
         );
     }
 
