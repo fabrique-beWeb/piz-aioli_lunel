@@ -1,3 +1,4 @@
+@charset "UTF-8";
 footer {
   background-color: #bd0e0e;
   text-align: center;
@@ -15,6 +16,18 @@ header {
 
 a:hover {
   color: red; }
+
+.attente {
+  background-color: #bd0e0e;
+  color: white; }
+
+.preparation {
+  background-color: white;
+  color: #000; }
+
+.terminé {
+  background-color: #19c519;
+  color: #000; }
 
 h1 {
   margin-top: 0px; }

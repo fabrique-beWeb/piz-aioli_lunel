@@ -1,0 +1,14 @@
+@import "color";
+
+.attente{
+    background-color: $footerColor;
+    color: white;
+}
+.preparation{
+    background-color: white;
+    color: $borderColor;
+}
+.terminé{
+    background-color: $headerColor;
+    color: $borderColor;
+}

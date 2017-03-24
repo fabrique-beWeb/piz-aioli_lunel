@@ -25,26 +25,16 @@ class CommandeController extends Controller {
      * @Method("GET")
      */
     public function indexAction() {
-        return $this->render('commande/index.html.twig');
-    }
-
-    /**
-     * Lists all commande entities.
-     *
-     * @Route("/notDone")
-     * @Method("GET")
-     */
-    public function getCommand() {
         $em = $this->getDoctrine()->getManager();
-//        $commandes = $em->getRepository('AppBundle:Commande')->findby(array('statut' => 2 and 1), array('heure' => 'ASC'));
-//        $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
                         'SELECT c
                         FROM AppBundle:Commande c
                         WHERE c.statut < :statut
                         ORDER BY c.heure ASC'
                 )->setParameter('statut', 3);
-        return new JsonResponse($query->getResult());
+        return $this->render('commande/index.html.twig', array(
+                    "commandes" => $query->getResult()
+        ));
     }
 
     /**
@@ -133,7 +123,16 @@ class CommandeController extends Controller {
      */
     public function updateCommand(Request $request, $id) {
         $command = $this->getDoctrine()->getRepository(Commande::class)->find($id);
-        $status = $this->getDoctrine()->getRepository(Statut::class)->find($request->get("id"));
+        if ($command->getStatut()->getId() < 3) {
+            $idStatus = $command->getStatut()->getId() + 1;
+        }
+        elseif ($request->get("info")== "annuler") {
+            $idStatus = $command->getStatut()->getId() - 1;
+        }
+//        $idStatus = $command->getStatut()->getId();
+//        $status = "preparation";
+//        echo $status;
+        $status = $this->getDoctrine()->getRepository(Statut::class)->find($idStatus);
         $em = $this->getDoctrine()->getManager();
         $command->setStatut($status);
         $em->merge($command);

@@ -11,10 +11,10 @@ $(document).ready(function () {
         url: "./status",
         success: function (data, textStatus, jqXHR) {
 
-            $(".thumbnail").css({
-                "background-color": "#bd0e0e",
-                "color": "white"
-            }).addClass("attente");
+//            $(".thumbnail").css({
+//                "background-color": "#bd0e0e",
+//                "color": "white"
+//            }).addClass("attente");
         }
     });
 //    getCommand();
@@ -46,34 +46,34 @@ $(".thumbnail").click(function (e) {
         dataType: 'json',
         url: "./status",
         success: function (data, textStatus, jqXHR) {
-            $(t).css({
-                "background-color": "#19c519",
-                "color": "#333"
-            });
+//            $(t).css({
+//                "background-color": "#19c519",
+//                "color": "#333"
+//            });
         }
     });
 });
 $(".thumbnail").click(function (e) {
 //    getCommand();
-    updateCommand(this);
+    var info = null;
+    updateCommand(this, info);
+});
+$(".annuler").click(function (e) {
+//    getCommand();
+    alert("annulet");
+    var info = "annuler";
+    updateCommand(this, info);
 });
 
-function updateCommand(elem) {
-    var idStatus = null;
-    if ($.contains($(elem).attr('class'),"attente")) {
-        alert($(elem).attr('class'));
-        idStatus = $(elem).attr('class') + 1;
-        alert(idStatus);
-    } else if ($(elem).attr('class') == "preparation") {
-        idStatus = $(elem).attr('class') + 1;
-    } 
+function updateCommand(elem, info) {
+    alert(info);
     $.ajax({
         type: 'PUT',
         async: true,
         dataType: 'json',
         url: "./" + $(elem).attr('id') + "/update",
         data: {
-            id: idStatus
+            info: info
         },
         success: function (data, textStatus, jqXHR) {
 

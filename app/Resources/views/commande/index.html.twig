@@ -17,58 +17,41 @@
 {% endblock %}
 {% block contenu %}
     <h1>Liste des Commandes</h1>
-    {#    {% for commande in commandes %}
-            <div id="{{commande.id}}" class="container thumbnail">
-                <h3>Numéro du Client: {{commande.idClient}}</h3>
+    {% for commande in commandes %}
+        <div id="{{commande.id}}" class="container thumbnail {{commande.statut}}">
+            <div class="col-xs-8">
+                <div class="col-md-6">   
+                    <h3>Nom du Client: {{commande.idClient}}</h3>
+                    <p>Date: {{commande.date|date('d/m/y')}}</p>
+                    <p>Heure: {{commande.heure|date('h:i:s')}}</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Nom de Pizza: </h3>
+                    <p>{{commande.idPizza}}</p>
+                </div>
+            </div>
+        </div>
+            <button class="btn btn-default annuler">ANNULER</button>
+    {% endfor %}
+    {#    {% verbatim %}
+    
+            <div class="container thumbnail" ng-app="command" ng-contoller="commandAdmin"  ng-repeat="commande in commands">
+                <h3>Numéro du Client: {{commande}}</h3>
                 <div class="row">
                     <div class="col-md-4">   
-                        <p>Date: {{commande.date|date('d/m/y')}}</p>
-                        <p>Heure: {{commande.heure|date('h:i:s')}}</p>
+                        <p>Date: {{commande.date | date('d/m/y')}}</p>
+                        <p>Heure: {{commande.heure | date('h:i:s')}}</p>
                     </div>
                     <div class="col-md-4">
                         <p>Moyen du Paiement: {{commande.modePaiement}}</p>
-                        <p>Nom du livreur: {{commande.nomLivreur }}</p>
+                        <p>Nom du livreur: {{commande.nomLivreur}}</p>
                         <p>Numéro de Pizza: {{commande.idPizza}}</p>
                     </div>
                     <div class="col-md-4">
                         <p>Message: {{commande.message}}</p>
-                        {#            <p>Statut: {{commande.statut}}</p>#}
-    {#                    <select class="status">
-                            
-                        </select>#}
-    {#   <p>Adresse: {{commande.adressesLivraison}}</p>
-   </div>
-</div>
-</div>#}
-    {#                    <ul>
-                            <li>
-                                <a href="{{ path('commande_show', { 'id': commande.id }) }}">Details</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('commande_edit', { 'id': commande.id }) }}">Modifier</a>
-                            </li>
-                        </ul>#}
-
-    {#    {% endfor %}#}
-    {% verbatim %}
-
-        <div class="container thumbnail" ng-contoller="commandAdmin" ng-repeat="commande in commands">
-            <h3>Numéro du Client: {{commande.idClient}}</h3>
-            <div class="row">
-                <div class="col-md-4">   
-                    <p>Date: {{commande.date | date('d/m/y')}}</p>
-                    <p>Heure: {{commande.heure | date('h:i:s')}}</p>
-                </div>
-                <div class="col-md-4">
-                    <p>Moyen du Paiement: {{commande.modePaiement}}</p>
-                    <p>Nom du livreur: {{commande.nomLivreur}}</p>
-                    <p>Numéro de Pizza: {{commande.idPizza}}</p>
-                </div>
-                <div class="col-md-4">
-                    <p>Message: {{commande.message}}</p>
-                    <p>Adresse: {{commande.adressesLivraison}}</p>
+                        <p>Adresse: {{commande.adressesLivraison}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endverbatim %}
+        {% endverbatim %}#}
 {% endblock %}
