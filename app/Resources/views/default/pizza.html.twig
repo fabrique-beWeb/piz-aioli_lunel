@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+    <div class="container">
+        {%  for  pizza in varPizza %}
+        <div id="{{pizza.id}}" class="row thumbnail">
+            <img class="col-md-2" src="{{asset('images/')~pizza.image }}">
+            <div class="col-md-8">
+                <h3 class="text-center">{{pizza.nomPizza}}</h3>
+            <p class="text-center">{{pizza.ingredients}}</p>
+            <p>{{pizza.base}}</p>
+            </div>
+            <h3 class="col-md-2">Prix: {{pizza.prix}} €</h3>
+            <button class="btn-success commander" onclick="addtocart({{pizza.id}})">Ajouter au panier</button>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

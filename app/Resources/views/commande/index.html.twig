@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+
+{% block nav %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-default">
+                <ul class="nav text-center">
+                    <li class="col-lg-3"><a href="{{ path('home')}}">Accueil</a></li>
+                    <li class="col-lg-3"><a href="{{ path('pizza')}}">Nos pizzas</a></li>
+                    <li class="col-lg-3"><a href="{{ path('location')}}">Venir nous voir</a></li>
+                    {#<li class="col-lg-3"><a href="{{ path('login')}}">Se connecter</a></li>#}
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+{% block contenu %}
+    <h1>Liste des Commandes</h1>
+    {% for commande in commandes %}
+        <div class="container thumbnail">
+            <h3>Numéro du Client: {{commande.idClient}}</h3>
+            <div class="row">
+                <div class="col-md-4">   
+            <p>Date: {{commande.date|date('d/m/y')}}</p>
+            <p>Heure: {{commande.heure|date('h:i:s')}}</p>
+                </div>
+                <div class="col-md-4">
+            <p>Moyen du Paiement: {{commande.modePaiement}}</p>
+            <p>Nom du livreur: {{commande.nomLivreur }}</p>
+            <p>Numéro de Pizza: {{commande.idPizza}}</p>
+                </div>
+                <div class="col-md-4">
+            <p>Message: {{commande.message}}</p>
+            <p>Statut: {{commande.statut}}</p>
+            <p>Adresse: {{commande.adressesLivraison}}</p>
+                </div>
+            </div>
+        </div>
+                    <ul>
+                        <li>
+                            <a href="{{ path('commande_show', { 'id': commande.id }) }}">Details</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('commande_edit', { 'id': commande.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+            
+        {% endfor %}
+
+    {#<table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idclient</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Modepaiement</th>
+                <th>Nomlivreur</th>
+                <th>Idpizza</th>
+                <th>Message</th>
+                <th>Statut</th>
+                <th>Adresseslivraison</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td><a href="{{ path('commande_show', { 'id': commande.id }) }}">{{ commande.id }}</a></td>
+                <td>{{ commande.idClient }}</td>
+                <td>{{ commande.date }}</td>
+                <td>{{ commande.heure }}</td>
+                <td>{{ commande.modePaiement }}</td>
+                <td>{{ commande.nomLivreur }}</td>
+                <td>{{ commande.idPizza }}</td>
+                <td>{{ commande.message }}</td>
+                <td>{{ commande.statut }}</td>
+                <td>{{ commande.adressesLivraison }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('commande_show', { 'id': commande.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('commande_edit', { 'id': commande.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>#}
+
+    <ul>
+        <li>
+            <a href="{{ path('commande_new') }}">Creation d'une nouvelle commande</a>
+        </li>
+    </ul>
+{% endblock %}
