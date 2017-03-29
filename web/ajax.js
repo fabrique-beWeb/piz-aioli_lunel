@@ -10,15 +10,11 @@ $(document).ready(function () {
         dataType: 'json',
         url: "./status",
         success: function (data, textStatus, jqXHR) {
-//            $(".thumbnail").css({
-//                "background-color": "#bd0e0e",
-//                "color": "white"
-//            }).addClass("attente");
+
         }
     });
 });
 $(".thumbnail").click(function (e) {
-    var t = this;
     e.preventDefault();
     $.ajax({
         type: 'GET',
@@ -26,10 +22,6 @@ $(".thumbnail").click(function (e) {
         dataType: 'json',
         url: "./status",
         success: function (data, textStatus, jqXHR) {
-//            $(t).css({
-//                "background-color": "#19c519",
-//                "color": "#333"
-//            });
         }
     });
 });

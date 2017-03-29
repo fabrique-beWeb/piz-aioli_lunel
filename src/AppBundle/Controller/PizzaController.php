@@ -2,11 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Base;
 use AppBundle\Entity\Pizza;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -14,22 +16,21 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("admin")
  */
-class PizzaController extends Controller
-{
+class PizzaController extends Controller {
+
     /**
      * Lists all pizza entities.
      *
      * @Route("/", name="pizza_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
-
         $pizzas = $em->getRepository('AppBundle:Pizza')->findAll();
-
+        $bases = $this->getDoctrine()->getRepository(Base::class)->findAll();
         return $this->render('pizza/index.html.twig', array(
-            'pizzas' => $pizzas,
+                    'pizzas' => $pizzas,
+                    'bases' => $bases,
         ));
     }
 
@@ -37,31 +38,27 @@ class PizzaController extends Controller
      * Creates a new pizza entity.
      *
      * @Route("/new", name="pizza_new")
-     * @Method({"GET", "POST"})
+     * @Method({"POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
+//        echo $request->get("img");
         $pizza = new Pizza();
-        $form = $this->createForm('AppBundle\Form\PizzaType', $pizza);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            $nomDuFichier = md5(uniqid()) . '.' . $pizza->getImage()->getClientOriginalExtension();
-            $pizza->getImage()->move('../web/images', $nomDuFichier);
-            $pizza->setImage($nomDuFichier);
-            
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($pizza);
-            $em->flush($pizza);
-
-            return $this->redirectToRoute('pizza_show', array('id' => $pizza->getId()));
-        }
-
-        return $this->render('pizza/new.html.twig', array(
-            'pizza' => $pizza,
-            'form' => $form->createView(),
-        ));
+//        $pizza->setImage($request->get("img"));
+//        $r =upl$request->get("img");
+//        echo $r;
+        $nomDuFichier = md5(uniqid()) . '.' . $pizza->getImage()->getClientOriginalExtension();
+        $pizza->getImage()->move('/upload/images', $nomDuFichier);
+        $pizza->setImage($nomDuFichier);
+        $em = $this->getDoctrine()->getManager();
+//        $pizza->setBase($request->get("base"));
+//        $pizza->setIngredients($request->get("ingredient"));
+//        $pizza->setNomPizza($request->get("nom"));
+//        $pizza->setPrix($request->get("prix"));
+//        $pizza->;
+        $em->persist($pizza);
+        $em->flush($pizza);
+        return new JsonResponse($pizza);
+//        return $this->redirectToRoute('pizza_index');
     }
 
     /**
@@ -70,13 +67,12 @@ class PizzaController extends Controller
      * @Route("/{id}", name="pizza_show")
      * @Method("GET")
      */
-    public function showAction(Pizza $pizza)
-    {
+    public function showAction(Pizza $pizza) {
         $deleteForm = $this->createDeleteForm($pizza);
 
         return $this->render('pizza/show.html.twig', array(
-            'pizza' => $pizza,
-            'delete_form' => $deleteForm->createView(),
+                    'pizza' => $pizza,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -86,12 +82,11 @@ class PizzaController extends Controller
      * @Route("/{id}/edit", name="pizza_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Pizza $pizza)
-    {
+    public function editAction(Request $request, Pizza $pizza) {
         $deleteForm = $this->createDeleteForm($pizza);
         $editForm = $this->createForm('AppBundle\Form\PizzaType', $pizza);
         $editForm->handleRequest($request);
-        
+
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $nomDuFichier = md5(uniqid()) . '.' . $pizza->getImage()->getClientOriginalExtension();
@@ -103,9 +98,9 @@ class PizzaController extends Controller
         }
 
         return $this->render('pizza/edit.html.twig', array(
-            'pizza' => $pizza,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'pizza' => $pizza,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -115,8 +110,7 @@ class PizzaController extends Controller
      * @Route("/{id}", name="pizza_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Pizza $pizza)
-    {
+    public function deleteAction(Request $request, Pizza $pizza) {
         $form = $this->createDeleteForm($pizza);
         $form->handleRequest($request);
 
@@ -136,12 +130,12 @@ class PizzaController extends Controller
      *
      * @return Form The form
      */
-    private function createDeleteForm(Pizza $pizza)
-    {
+    private function createDeleteForm(Pizza $pizza) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('pizza_delete', array('id' => $pizza->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('pizza_delete', array('id' => $pizza->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }
