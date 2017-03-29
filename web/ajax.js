@@ -10,33 +10,13 @@ $(document).ready(function () {
         dataType: 'json',
         url: "./status",
         success: function (data, textStatus, jqXHR) {
-
 //            $(".thumbnail").css({
 //                "background-color": "#bd0e0e",
 //                "color": "white"
 //            }).addClass("attente");
         }
     });
-//    getCommand();
 });
-//$('form').click(function (e) {
-//    e.preventDefault();
-//    $.ajax({
-//        type: 'POST',
-//        async: true,
-//        dataType: 'text',
-//        data: {
-//            nom: $('form').val()
-//        },
-//        url: "http://localhost/final/web/app_dev.php/command",
-//        success: function (data, textStatus, jqXHR) {
-//            var commandes = $.parseJSON(data);
-//            alert($(commandes[0]).nom);
-//        }
-//
-//
-//    });
-//});
 $(".thumbnail").click(function (e) {
     var t = this;
     e.preventDefault();
@@ -53,20 +33,22 @@ $(".thumbnail").click(function (e) {
         }
     });
 });
-$(".thumbnail").click(function (e) {
+$(".commandAdmin").click(function (e) {
 //    getCommand();
+    var elem = $(this).parent();
     var info = null;
-    updateCommand(this, info);
+    updateCommand(elem, info);
 });
 $(".annuler").click(function (e) {
 //    getCommand();
-    alert("annulet");
+//    alert("annulet");
+    var elem = $(this).parent();
     var info = "annuler";
-    updateCommand(this, info);
+    updateCommand(elem, info);
 });
 
 function updateCommand(elem, info) {
-    alert(info);
+//    alert(info);
     $.ajax({
         type: 'PUT',
         async: true,

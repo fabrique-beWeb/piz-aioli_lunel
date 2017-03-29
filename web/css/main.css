@@ -17,9 +17,17 @@ header {
 a:hover {
   color: red; }
 
+.commandAdmin {
+  /*position: relative !important;*/
+  cursor: pointer;
+  /*z-index: 10000 !important;*/ }
+
+/*.tests{
+    height: 100px;
+}*/
 .attente {
   background-color: #bd0e0e;
-  color: white; }
+  color: #000; }
 
 .preparation {
   background-color: white;

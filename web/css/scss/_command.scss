@@ -1,8 +1,15 @@
 @import "color";
-
+.commandAdmin{
+    /*position: relative !important;*/
+    cursor: pointer;
+    /*z-index: 10000 !important;*/
+}
+/*.tests{
+    height: 100px;
+}*/
 .attente{
     background-color: $footerColor;
-    color: white;
+    color: #000;
 }
 .preparation{
     background-color: white;

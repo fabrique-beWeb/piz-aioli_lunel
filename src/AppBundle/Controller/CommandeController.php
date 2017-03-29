@@ -25,15 +25,9 @@ class CommandeController extends Controller {
      * @Method("GET")
      */
     public function indexAction() {
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-                        'SELECT c
-                        FROM AppBundle:Commande c
-                        WHERE c.statut < :statut
-                        ORDER BY c.heure ASC'
-                )->setParameter('statut', 3);
+        $command = $this->getDoctrine()->getManager()->getRepository('AppBundle:Commande')->findCommandNotDone();
         return $this->render('commande/index.html.twig', array(
-                    "commandes" => $query->getResult()
+            "commandes"=>$command
         ));
     }
 
@@ -46,6 +40,17 @@ class CommandeController extends Controller {
     public function getStatus() {
         $status = $this->getDoctrine()->getRepository(Statut::class)->findAll();
         return new JsonResponse($status);
+    }
+    
+    /**
+     * Lists all commande entities.
+     *
+     * @Route("/notDone")
+     * @Method("GET")
+     */
+    public function getCommandNotDone() {
+        $command = $this->getDoctrine()->getManager()->getRepository('AppBundle:Commande')->findCommandNotDone();
+        return new JsonResponse($command);
     }
 
     /**
@@ -123,11 +128,10 @@ class CommandeController extends Controller {
      */
     public function updateCommand(Request $request, $id) {
         $command = $this->getDoctrine()->getRepository(Commande::class)->find($id);
-        if ($command->getStatut()->getId() < 3) {
-            $idStatus = $command->getStatut()->getId() + 1;
-        }
-        elseif ($request->get("info")== "annuler") {
+        if ($request->get("info") == "annuler" && $command->getStatut()->getId() > 1) {
             $idStatus = $command->getStatut()->getId() - 1;
+        } elseif ($command->getStatut()->getId() < 3) {
+            $idStatus = $command->getStatut()->getId() + 1;
         }
 //        $idStatus = $command->getStatut()->getId();
 //        $status = "preparation";
