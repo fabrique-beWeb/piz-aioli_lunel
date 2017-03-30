@@ -105,3 +105,15 @@ location.reload();
     });
     
 }
+
+function sendcommand() {
+    $('#sendpanier').fadeOut();
+    $.ajax({
+        url: "/sendcommand",
+        dataType: 'json',
+        data: {"commande": panier},
+        complete : function(){
+            
+        }
+    });
+}

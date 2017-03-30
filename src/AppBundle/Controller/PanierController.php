@@ -38,6 +38,12 @@ class PanierController extends Controller {
 
         return new JsonResponse($panier);
     }
+    public function sendCommand(){
+        return new JsonResponse();
+        $em->persist($data);
+        $em->flush();
+        $em->clear();
+    }
 }
 
 // le Create et Update sur le panier
