@@ -260,7 +260,8 @@ class Pizza implements \JsonSerializable
     public function jsonSerialize() {
         return array(
             "id"=>$this->id,
-            "nom"=>$this->nomPizza
+            "nom"=>$this->nomPizza,
+            "prix"=>$this->prix
         );
     }
 }

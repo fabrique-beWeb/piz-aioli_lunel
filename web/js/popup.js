@@ -1,5 +1,6 @@
-function popup(id) {
+var panier = [];
 
+function popup(id) {
     $('#popup').fadeIn();
    
    $('#lienadd').attr('onclick', 'addtocart(' + id + ');');
@@ -33,10 +34,12 @@ alert(id);
         url: "/addtocart/" + id,
         dataType: 'json',
   complete : function(result){
-
-cartnb=result.responseJSON.cartnb;
-    $('.cart').html("");
-$('.cart').append(cartnb);
+      var  data = result.responseJSON;
+      panier.push(data);
+            alert(panier);
+//cartnb=result.responseJSON.cartnb;
+//    $('.cart').html("");
+//$('.cart').append(cartnb);
 
 }    });
     $('#popup').fadeOut();
@@ -48,21 +51,23 @@ $('.cart').append(cartnb);
 function mycart() {
 
     $('#mycart').fadeIn();
-
-
-    $.ajax({
-        url: "/showpanier",
-        dataType: 'json',
-  complete : function(listcart){
-$('#listcart').html("");
-listcart=listcart.responseJSON;
+    $('#listcart').empty();
+    $.each(panier,function(){
+       $('#listcart').append("<p>" + this.nom + " " + this.prix + "</p>");
+    });
+//    $.ajax({
+//        url: "/showpanier",
+//        dataType: 'json',
+//  complete : function(listcart){
+//$('#listcart').html("");
+//listcart=listcart.responseJSON;
 //for(var i= 0; i < listcart.length; i++)
 //{
-    $('#listcart').append("<p>" + listcart.nom + "</p>");
+//    $('#listcart').append("<p>" + listcart.nom + "</p>");
 //}
-
-}
-    });
+//
+//}
+//    });
     
         var closecart = $('.closecart');
     closecart.click(function (event)

@@ -27,7 +27,6 @@ class PanierController extends Controller {
      */
     public function getIdFromPizza(Pizza $pizza) {
 //        $copies = $this->getDoctrine()->getRepository(Copy::class)->findByBook($id);
-        $this->get("SESSION")->set("listPizza",$pizza);
         return new JsonResponse($pizza);
     }
     /**
@@ -35,7 +34,8 @@ class PanierController extends Controller {
      * @return JsonResponse
      */
     public function showListPizza(){
-        $panier=$this->get("SESSION")->get("listPizza");
+        
+
         return new JsonResponse($panier);
     }
 }
