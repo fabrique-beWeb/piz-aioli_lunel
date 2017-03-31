@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
  * @ORM\Table(name="pizAioli_commande")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommandeRepository")
  */
-class Commande
+class Commande implements JsonSerializable
 {
     /**
      * @var int
@@ -327,5 +328,17 @@ class Commande
     {
         return $this->adressesLivraison;
     }
+
+    public function jsonSerialize() {
+        return array(
+            'id'=> $this->id,
+            'date'=> $this->date,
+            'message'=> $this->message,
+            'livraison'=> $this->adressesLivraison,
+            'heure'=> $this->heure,
+            'status'=> $this->statut
+        );
+    }
+
 }
 

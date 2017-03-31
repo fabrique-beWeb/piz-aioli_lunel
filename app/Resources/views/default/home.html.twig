@@ -8,13 +8,13 @@
                     <li class="col-lg-3"><a href="{{ path('home')}}">Accueil</a></li>
                     <li class="col-lg-3"><a href="{{ path('pizza')}}">Nos pizzas</a></li>
                     <li class="col-lg-3"><a href="{{ path('location')}}">Venir nous voir</a></li>
-                    {% if is_granted("ROLE_ADMIN")%}
+                        {% if is_granted("ROLE_ADMIN")%}
                         <li class="col-lg-3"><a href="{{ path('fos_user_security_logout')}}">Se deconnecter</a></li>
-                    {% elseif is_granted("ROLE_USER") %}
+                        {% elseif is_granted("ROLE_USER") %}
                         <li class="col-lg-3"><a href="{{ path('fos_user_security_logout')}}">Se deconnecter</a></li>
-                    {% else %}
-                         <li class="col-lg-3"><a href="{{ path('fos_user_security_login')}}">Se connecter</a></li>
-                    {% endif %}
+                        {% else %}
+                        <li class="col-lg-3"><a href="{{ path('fos_user_security_login')}}">Se connecter</a></li>
+                        {% endif %}
                 </ul>
             </nav>
         </div>
@@ -24,22 +24,22 @@
     <section class="container thumbnail">
         <div class="row">
             {% for enseigne in varEnseigne%}
-            <div class="col-md-4 text-center">
-                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span><h1>{{enseigne.horaires}}</h1>
-                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span><h1>{{enseigne.telephone}}</h1>
-            </div>
+                <div class="col-md-4 text-center">
+                    <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span><h1>{{enseigne.horaires}}</h1>
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span><h1>{{enseigne.telephone}}</h1>
+                </div>
             {% endfor %}
             {%  for  pizza in varPizza %}
-            <div class="col-md-4 text-center">
-                <h1>Pizza du jour</h1>
-                <img height="200" width="200" src="{{asset('images/')~pizza.image }}">
-                <h1>{{pizza.nomPizza}}</h1>
-            </div>
-            <div class="col-md-4 text-center">
-                <h3>Ingredients</h3>
-                <p>{{pizza.ingredients}}</p>
-            </div>
-                {% endfor %}
+                <div class="col-md-4 text-center">
+                    <h1>Pizza du jour</h1>
+                    <img height="200" width="200" src="{{asset('images/')~pizza.image }}">
+                    <h1>{{pizza.nomPizza}}</h1>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3>Ingredients</h3>
+                    <p>{{pizza.ingredients}}</p>
+                </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}

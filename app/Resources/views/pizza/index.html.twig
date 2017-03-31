@@ -7,7 +7,7 @@
                     <li class="col-lg-3"><a href="{{ path('home')}}">Accueil</a></li>
                     <li class="col-lg-3"><a href="{{ path('pizza')}}">Nos pizzas</a></li>
                     <li class="col-lg-3"><a href="{{ path('location')}}">Venir nous voir</a></li>
-{#                    <li class="col-lg-3"><a href="{{ path('login')}}">Se connecter</a></li>#}
+                        {#                    <li class="col-lg-3"><a href="{{ path('login')}}">Se connecter</a></li>#}
                 </ul>
             </nav>
         </div>
@@ -15,68 +15,53 @@
 {% endblock %}
 
 {% block contenu %}
-    
-    <h1>Ma Liste de Pizza</h1>
 
-    {#<table>
-        <thead>
-            <tr>
-                
-                <th>Nom</th>
-                <th>Base</th>
-                <th>Ingredients</th>
-                <th>Prix</th>
-                <th>Image</th>
-                <th>Actions</th>
-                
-            </tr>
-        </thead>
-        <tbody>#}
     <div class="container">
-        {% for pizza in pizzas %}
-            <div class="row thumbnail">
-            <img class="col-md-2" src="{{asset('images/')~pizza.image }}">
+        <form class="row thumbnail formAddPizza">
+            <input id="imgPizza" class="col-md-2" type="file" accept=".jpg,.png,.jpeg"/>
             <div class="col-md-8">
-                <h3 class="text-center">{{pizza.nomPizza}}</h3>
-            <p class="text-center">{{pizza.ingredients}}</p>
+                <input id="nomPizza" type="text" class="col-md-offset-4 col-md-4 text-center" placeholder="Nom de la pizza"/>
+                <input id="ingredientsPizza" type="text" class="col-md-12 text-center" placeholder="Ingredients"/>
+                <select id="basePizza">
+                    {% for base in bases %}
+                        <option value="{{base.id}}">
+                            {{base.nom}}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="col-md-2">
-            <h3>Prix: {{pizza.prix}} €</h3>
-            <div class="text-center">
-                <a href="{{ path('pizza_show', { 'id': pizza.id }) }}" class="btn btn-info" role="button">Details</a>
-                <a href="{{ path('pizza_edit', { 'id': pizza.id }) }}" class="btn btn-info" role="button">Modifier</a>
-                
+                <input id="prixPizza" type="text" class="text-center" placeholder="Prix"/>
             </div>
+            <div class="col-md-12">
+                <input id="ajoutPizza" type="submit" class="btn btn-info col-md-2 col-md-offset-10" value="Ajouter"/>
             </div>
-        </div>
- {#           <tr>
-                
-                <td>{{ pizza.nomPizza }}</td>
-                
-                <td>{{ pizza.base }}</td>
-                <td>{{ pizza.ingredients }}</td>
-                <td>{{ pizza.prix }}</td>
-                <td><img width="100" height="100" src="{{asset('images/')~pizza.image }}"></td>#}
-                
-                {#<td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('pizza_show', { 'id': pizza.id }) }}">Details</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('pizza_edit', { 'id': pizza.id }) }}">Modifier</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>#}
+        </form>
+        {% for pizza in pizzas %}
+            <div class="row thumbnail">
+                <img class="col-md-2" src="{{asset('images/')~pizza.image }}">
+                <div class="col-md-8">
+                    <h3 class="text-center">{{pizza.nomPizza}}</h3>
+                    <p class="text-center">{{pizza.ingredients}}</p>
+                </div>
+                <div class="col-md-2">
+                    <h3>Prix: {{pizza.prix}} €</h3>
+                    <div class="text-center">
+                        <a href="{{ path('pizza_show', { 'id': pizza.id }) }}" class="btn btn-info" role="button">Details</a>
+                        <a href="{{ path('pizza_edit', { 'id': pizza.id }) }}" class="btn btn-info" role="button">Modifier</a>
+
+                    </div>
+                </div>
+            </div>
         {% endfor %}
     </div>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('pizza_new') }}">Ajouter une nouvelle Pizza</a>
-        </li>
-    </ul>
+{#<ul>
+    <li>
+        <a href="{{ path('pizza_new') }}">Ajouter une nouvelle Pizza</a>
+    </li>
+</ul>#}
+{% endblock %}
+{% block javascripts %}
+    <script src="/script/pizza.js"></script>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * Statut
@@ -10,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="pizAioli_statut")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\StatutRepository")
  */
-class Statut
-{
+class Statut implements JsonSerializable {
+
     /**
      * @var int
      *
@@ -28,14 +29,12 @@ class Statut
      */
     private $nom;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -46,8 +45,7 @@ class Statut
      *
      * @return Statut
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -58,13 +56,19 @@ class Statut
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
+
     public function __toString() {
         return $this->getNom();
     }
 
-}
+    public function jsonSerialize() {
+        return array(
+            "id" => $this->id,
+            "nom" => $this->nom
+        );
+    }
 
+}

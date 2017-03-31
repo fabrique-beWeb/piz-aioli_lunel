@@ -1,55 +1,10 @@
 @charset "UTF-8";
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 17 janv. 2017, 15:51:58
-    Author     : hicham
-*/
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 1 févr. 2017, 14:48:13
-    Author     : alexandre-brunet
-*/
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 1 févr. 2017, 14:47:15
-    Author     : alexandre-brunet
-*/
 footer {
   background-color: #bd0e0e;
   text-align: center;
   border-top: solid 1px #000;
   color: white; }
 
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 1 févr. 2017, 14:47:56
-    Author     : alexandre-brunet
-*/
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 1 févr. 2017, 14:47:15
-    Author     : alexandre-brunet
-*/
 header {
   text-align: center;
   border-bottom: solid 1px #000;
@@ -62,15 +17,26 @@ header {
 a:hover {
   color: red; }
 
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 1 févr. 2017, 14:47:15
-    Author     : alexandre-brunet
-*/
+.commandAdmin {
+  /*position: relative !important;*/
+  cursor: pointer;
+  /*z-index: 10000 !important;*/ }
+
+/*.tests{
+    height: 100px;
+}*/
+.attente {
+  background-color: #bd0e0e;
+  color: #000; }
+
+.preparation {
+  background-color: white;
+  color: #000; }
+
+.terminé {
+  background-color: #19c519;
+  color: #000; }
+
 h1 {
   margin-top: 0px; }
 
