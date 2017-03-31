@@ -3,11 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ViewController extends Controller {
@@ -62,25 +60,6 @@ class ViewController extends Controller {
                     'commande' => $commande,
                     'form' => $form->createView(),
         ));
-    }
-
-    /**
-     * Lists all commande entities.
-     *
-     * @Route("/command/notDone")
-     * @Method("GET")
-     */
-    public function getCommand() {
-        $em = $this->getDoctrine()->getManager();
-//        $commandes = $em->getRepository('AppBundle:Commande')->findby(array('statut' => 2 and 1), array('heure' => 'ASC'));
-//        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-                        'SELECT c
-                        FROM AppBundle:Commande c
-                        WHERE c.statut < :statut
-                        ORDER BY c.heure ASC'
-                )->setParameter('statut', 3);
-        return new JsonResponse($query->getResult());
     }
 
 }

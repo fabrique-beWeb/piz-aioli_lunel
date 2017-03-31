@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\File;
  * @ORM\Table(name="pizAioli_pizza")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PizzaRepository")
  */
-class Pizza
+class Pizza implements \JsonSerializable
 {
     /**
      * @var int
@@ -257,4 +257,11 @@ class Pizza
         return $this->getNomPizza();
     }
 
+    public function jsonSerialize() {
+        return array(
+            "id"=>$this->id,
+            "nom"=>$this->nomPizza,
+            "prix"=>$this->prix
+        );
+    }
 }
