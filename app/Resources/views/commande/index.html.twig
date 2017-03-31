@@ -20,12 +20,12 @@
         {% for commande in commandes %}
             <div id="{{commande.id}}" class="container-fluid thumbnail {{commande.statut}}">
                 <div class="col-xs-8 commandAdmin">
-                    <div class="col-md-6">   
+                    <div class="col-xs-6">   
                         <h3>Nom du Client: {{commande.idClient}}</h3>
                         <p>Date: {{commande.date|date('d/m/y')}}</p>
                         <p>Heure: {{commande.heure|date('h:i:s')}}</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-xs-6">
                         <h3>Nom de Pizza: </h3>
                         <p>{{commande.idPizza}}</p>
                     </div>
